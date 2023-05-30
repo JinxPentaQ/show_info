@@ -1,16 +1,19 @@
 <template>
   <div class="banner-body">
     <div class="banner-popover">
-      <div class="banner-wrap">
         <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
           <van-swipe-item v-for="(item, index) in bannerList" :key="index">
-            <div v-if="item.id  === '1'">
+            <div class="banner-first" v-if="item.id  === '1'" >
               <img :src="item.img" alt="">
+              <div class="register-btns">
+                <a :href="item.url1" _blank>安全注册网址通道一</a>
+                <a :href="item.url2" _blank>安全注册网址通道二</a>
+                <a :href="item.url3" _blank>安全注册网址通道三</a>
+              </div>
             </div>
             <img v-else  :src="item.img" alt="">
           </van-swipe-item>
         </van-swipe>
-      </div>
     </div>
   </div>
 </template>
@@ -85,42 +88,11 @@ export default {
 
 <style lang="scss" scoped>
 .banner-body {
-  height: 100%;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  background: url("../../assets/banner/logbg1.jpg") no-repeat center center;
+  background-size: 100% 100%;
   .banner-popover {
-    width: 100%;
-    height: 100%;
-    float: left;
-    color: #fff;
-    background: url("../../assets/banner/logbg1.jpg") no-repeat center center;
-    background-size: 100% 100%;
-  }
-  .banner-popover p:first-child {
-    font-size: 50px;
-    margin-top: 24%;
-    letter-spacing: 15px;
-    padding-left: 35%;
-    margin-bottom: 20px;
-  }
-  .banner-popover label {
-    font-size: 20px;
-    text-align: center;
-    padding-left: 36%;
-  }
-  .banner-popover p:last-child {
-    width: 140px;
-    height: 40px;
-    font-size: 17px;
-    color: #fff;
-    background-color: #926dde;
-    margin: 30px 0 20px 20%;
-    line-height: 40px;
-    border-radius: 10px;
-    text-align: center;
-  }
-  .banner-wrap {
     position:absolute;
     top: 0;
     right: 0;
@@ -128,65 +100,23 @@ export default {
     left: 0;
     background-color: rgba($color: #000000, $alpha: 0.5);
   }
-  .banner-container {
-    width: 936px;
-    height: 560px;
-    position: absolute;
-    left: calc((100% - 936px) / 2);
-    top: calc((100% - 560px) / 2);
-    border-radius: 10px;
+  .my-swipe {
+    margin: 0 20px;
+    margin-top: 80px;
     overflow: hidden;
-    background: url("../../assets/banner/bannerBg.png") no-repeat center center;
-  }
-  .banner-header {
-    height: 70px;
-    font-size: 24px;
-    text-align: center;
-    color: #fbe59c;
-    position: relative;
-    padding: 10px;
-    padding-bottom: 0;
-    .name {
-      text-align: center;
-      padding-top: 10px;
-    }
-  } 
-  .banner-content {
-    height: 460px;
-    display: flex;
-    flex-direction: row;
-  }
-  .banner-left {
-    width: 180px;
-    height: 100%;
-    overflow: auto;
-    margin-left: 18px;
-    background-color: #fff;
-  }
-  .banner-right {
-    width: 719px;
-    overflow: hidden;
+    border-radius: 20px;
+    .van-swipe-item {
     
-    .banner-img {
       img {
         width: 100%;
-        height: 100%;
+        min-height: 600px;
       }
     }
-  }
-}
-.banner-container-mobile {
-  position: relative;
-  top: calc(100vh / 10);
-  left: 50%;
-  transform: translate(-50%);
-  width: calc(100vw - 40px);
-  height: calc(100vh - (100vh / 10) * 2); 
-  max-width: 480px;
-  overflow: hidden;
+  } 
+.banner-first {
   img {
-      width: 100%;
-      height: 100%;
+    width: 100%;
+    height: 100%;
   }
   .register-btns {
     position: absolute;
@@ -203,5 +133,6 @@ export default {
       margin-bottom: 10px;
     }
   }
+}
 }
 </style>
