@@ -79,10 +79,10 @@ const routes = [
     }
   },
   {
-    name: 'gogogo',
+    name: 'welcome',
     component: () => import('./view/banner'),
     meta: {
-      title: 'gogogo'
+      title: 'welcome'
     }
   },
 ];
