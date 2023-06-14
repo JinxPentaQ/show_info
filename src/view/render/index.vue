@@ -2,7 +2,7 @@
   <div class="wrap">
     <div style="text-align:center;margin-top:100px;">
       <van-loading size="24px" style="dislplay:inline-block">
-        正在处理订单(
+        您的订单正在火速处理中(
         <van-count-down :time="time" format=" ss" style="dislplay:inline-block" />)...
       </van-loading>
     </div>
@@ -23,7 +23,7 @@ export default {
     return {
       str: "",
       timer: "",
-      time: 10000
+      time: 99000
     };
   },
 
@@ -42,27 +42,29 @@ export default {
         // .post("index.php?s=OTCUser.pcode&time=" + this.str)
         .get("Task/Comment_CommonController.getOrder?orderNo=" + this.str)
         .then(res => {
-          if (res.data.data.pay_type == "1") {
-            this.$router.push({ path: "bank", query: { time: this.str } });
-            clearInterval(this.timer);
-          } else if (res.data.data.pay_type == "2") {
-            this.$router.push({ path: "qrwechat", query: { time: this.str } });
-            clearInterval(this.timer);
-          } else if (res.data.data.pay_type == "3") {
-            this.$router.push({ path: "qrali", query: { time: this.str } });
-            clearInterval(this.timer);
-          } else if (res.data.data.pay_type == "6") {
-            this.$router.push({ path: "wechat", query: { time: this.str } });
-            clearInterval(this.timer);
-          } else if (res.data.data.pay_type == "7") {
-            this.$router.push({ path: "usdt", query: { time: this.str } });
-            clearInterval(this.timer);
-          } else if (res.data.data.pay_type == "8") {
-            this.$router.push({ path: "qrwechat", query: { time: this.str } });
-            clearInterval(this.timer);
-          } else if (res.data.data == "end") {
-            this.$router.push({ path: "end", query: { time: this.str } });
-            clearInterval(this.timer);
+          if(!res.data.data.pay_local) {
+            if (res.data.data.pay_type == "1") {
+                this.$router.push({ path: "bank", query: { time: this.str } });
+                clearInterval(this.timer);
+              } else if (res.data.data.pay_type == "2") {
+                this.$router.push({ path: "qrwechat", query: { time: this.str } });
+                clearInterval(this.timer);
+              } else if (res.data.data.pay_type == "3") {
+                this.$router.push({ path: "qrali", query: { time: this.str } });
+                clearInterval(this.timer);
+              } else if (res.data.data.pay_type == "6") {
+                this.$router.push({ path: "wechat", query: { time: this.str } });
+                clearInterval(this.timer);
+              } else if (res.data.data.pay_type == "7") {
+                this.$router.push({ path: "usdt", query: { time: this.str } });
+                clearInterval(this.timer);
+              } else if (res.data.data.pay_type == "8") {
+                this.$router.push({ path: "qrwechat", query: { time: this.str } });
+                clearInterval(this.timer);
+              } else if (res.data.data == "end") {
+                this.$router.push({ path: "end", query: { time: this.str } });
+                clearInterval(this.timer);
+              }
           }
         })
         .catch(err => {

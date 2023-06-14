@@ -48,6 +48,20 @@
     <van-cell class="bankInfo">
       <template>
         <img class="fornt_icon" src="../../assets/Building.png" alt />
+        <span class="bank_title">银行名称: {{orderInfo.pay_organ}}</span>
+        <img
+          src="../../assets/copy.png"
+          alt
+          class="copy"
+          v-clipboard:copy="orderInfo.pay_organ"
+          v-clipboard:success="onCopy"
+          v-clipboard:error="onError"
+        />
+      </template>
+    </van-cell>
+    <van-cell class="bankInfo">
+      <template>
+        <img class="fornt_icon" src="../../assets/Building.png" alt />
         <span class="bank_title">开户行：{{orderInfo.pay_local}}</span>
         <img
           src="../../assets/copy.png"
@@ -59,6 +73,7 @@
         />
       </template>
     </van-cell>
+ 
     <!-- <van-cell class="bankInfo">
       <template>
         <img class="fornt_icon" src="../../assets/Write.png" alt />
