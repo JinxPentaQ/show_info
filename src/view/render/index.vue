@@ -1,10 +1,15 @@
 <template>
   <div class="wrap">
     <div style="text-align:center;margin-top:100px;">
-      <van-loading size="24px" style="dislplay:inline-block">
-        您的订单正在火速处理中(
-        <van-count-down :time="time" format=" ss" style="dislplay:inline-block" />)...
-      </van-loading>
+      <van-loading size="24px" style="dislplay:inline-block"> </van-loading>
+        您好，您该笔订单的入款信息正在火速为您准备中，
+        <br/>
+        请不要关闭该页面。
+        <br/>
+        稍后会显示在该页面中，谢谢您耐心的等待！
+        <br/>
+        倒计时：(
+        <van-count-down :time="time" format=" ss" style="dislplay:inline-block" />)
     </div>
   </div>
 </template>
