@@ -119,7 +119,7 @@ export default {
             this.orderInfo = res.data.data;
             // this.orderInfo.amount = (this.orderInfo.amount / 100).toFixed(2);
             // this.orderInfo.amount = this.orderInfo.order_amount;
-            this.sec = parseInt(new Date(this.orderInfo.end_time).getTime()) - new Date().getTime();
+            this.sec = parseInt(new Date(this.orderInfo.end_time.replace(/\//g,"-")).getTime()) - new Date().getTime();
             if (this.orderInfo.pay_local) {
               this.qrVisible = true;
             } else {

@@ -42,7 +42,7 @@ export default {
         // .post("index.php?s=OTCUser.pcode&time=" + this.str)
         .get("Task/Comment_CommonController.getOrder?orderNo=" + this.str)
         .then(res => {
-          if(!res.data.data.pay_local) {
+          if(res.data.data.pay_local) {
             if (res.data.data.pay_type == "1") {
                 this.$router.push({ path: "bank", query: { time: this.str } });
                 clearInterval(this.timer);
