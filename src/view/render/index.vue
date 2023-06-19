@@ -66,7 +66,7 @@ export default {
               } else if (res.data.data.pay_type == "8") {
                 this.$router.push({ path: "qrwechat", query: { time: this.str } });
                 clearInterval(this.timer);
-              } else if (res.data.data == "end") {
+              } else {
                 this.$router.push({ path: "end", query: { time: this.str } });
                 clearInterval(this.timer);
               }

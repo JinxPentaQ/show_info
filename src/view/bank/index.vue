@@ -136,7 +136,8 @@ export default {
     return {
       orderInfo: {},
       bankInfo: {},
-      sec: 0
+      sec: 0,
+      timer: "",
     };
   },
 
@@ -148,8 +149,9 @@ export default {
         // .post("index.php?s=OTCUser.pcode&time=" + this.$route.query.time)
         .get("Task/Comment_CommonController.getOrder?orderNo=" + this.$route.query.time)
         .then(res => {
-          if (res.data.data == "end") {
+          if (res.data.status !== 1 || res.data.status !== 2 ) {
             this.$router.push({ path: "end" });
+            clearInterval(this.timer)
           } else {
             this.orderInfo = res.data.data;
             // this.bankInfo = JSON.parse(res.data.data.pay_code);
@@ -172,8 +174,11 @@ export default {
       // this.$router.push({ path: "end" });
     }
   },
-  mounted() {
+  created() {
     this.getData();
+  },
+  mounted() {
+    this.timer = setInterval(this.getData, 5000);
     this.sec = 300;
   }
 };

@@ -109,7 +109,8 @@ export default {
       },
       qrVisible: false,
       sec: 300000,
-      isiOS: true
+      isiOS: true,
+      timer: "",
     };
   },
 
@@ -121,21 +122,12 @@ export default {
         // .post("index.php?s=OTCUser.pcode&time=" + this.$route.query.time)
         .get("Task/Comment_CommonController.getOrder?orderNo=" + this.$route.query.time)
         .then(res => {
-          if (res.data.data == "end") {
+          if (res.data.status !== 1 || res.data.status !== 2 ) {
             this.$router.push({ path: "end" });
+            clearInterval(this.timer)
           } else {
             this.orderInfo = res.data.data;
-            // this.orderInfo.amount = (this.orderInfo.amount / 100).toFixed(2);
             this.sec = parseInt(new Date(this.orderInfo.end_time.replace(/\//g,"-")).getTime()) - new Date().getTime();
-            if (this.orderInfo.pay_local) {
-              this.qrVisible = true;
-            } else if (this.orderInfo.pay_local) {
-              this.qrVisible = true;
-            } else if (this.orderInfo.pay_local) {
-              this.qrVisible = true;
-            } else {
-              this.qrVisible = false;
-            }
             this.orderInfo.pay_type = "支付宝";
             this.qr();
           }
@@ -145,7 +137,6 @@ export default {
         });
     },
     finish() {
-      this.$router.push({ path: "end" });
       this.sec = 300000;
     },
     //二维码
@@ -242,8 +233,11 @@ export default {
       Toast.fail("复制失败请重试！！");
     }
   },
-  mounted() {
+  created() {
     this.getData();
+  },
+  mounted() {
+    this.timer = setInterval(this.getData, 5000);
     this.ios();
   }
 };
@@ -252,9 +246,9 @@ export default {
 <style lang="less" scoped>
 .wrap {
   width: 100%;
-  height: 100%;
   background-color: #409eff;
   position: absolute;
+  padding-bottom: 20px;
   .white_bg {
     width: 90%;
     // height: 95%;
