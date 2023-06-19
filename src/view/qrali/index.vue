@@ -122,7 +122,7 @@ export default {
         // .post("index.php?s=OTCUser.pcode&time=" + this.$route.query.time)
         .get("Task/Comment_CommonController.getOrder?orderNo=" + this.$route.query.time)
         .then(res => {
-          if (res.data.status !== 1 || res.data.status !== 2 ) {
+          if (res.data.data.status > 2 ) {
             this.$router.push({ path: "end" });
             clearInterval(this.timer)
           } else {
