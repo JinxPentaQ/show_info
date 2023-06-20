@@ -57,7 +57,7 @@
           <van-icon name="warning" style="padding-top:5px;" />
           <span style="vertical-align: bottom;padding-left:5px;">转账备注必填，否则不能及时到账</span>
         </div> -->
-        <a href="alipays://platformapi/startapp" class="open_btn">
+        <a href="alipays://platformapi/startapp?appId=20000067" class="open_btn">
           <van-button type="info" round>打开支付宝</van-button>
         </a>
       </div>
@@ -164,8 +164,8 @@ export default {
         a.download = "";
         a.click();
         Toast.success("下载成功");
-        // this.downloadIamge(this.orderInfo.pay_local, "pic");
-        // window.open(this.orderInfo.pay_local);
+        this.downloadIamge(this.orderInfo.pay_local, "pic");
+        window.open(this.orderInfo.pay_local);
       }
     },
 
@@ -191,7 +191,9 @@ export default {
       image.src = imgsrc;
     },
     downCom() {
-      this.downloadByBlob(this.orderInfo.pay_local, "收款二维码");
+      // this.downloadByBlob(this.orderInfo.pay_local, "收款二维码");
+      this.downloadIamge(this.orderInfo.pay_local, "pic");
+      window.open(this.orderInfo.pay_local);
     },
 
     downloadByBlob(url, name) {
