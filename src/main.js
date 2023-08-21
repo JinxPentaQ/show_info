@@ -14,7 +14,7 @@ Vue.prototype.$md5 = md5;
 Vue.prototype.$axios = axios
 Vue.prototype.qs = QS;
 
-axios.defaults.baseURL = 'http://api.tmpay777.com';
+axios.defaults.baseURL = 'https://api.tmpay777.com';
 
 new Vue({
   router,
